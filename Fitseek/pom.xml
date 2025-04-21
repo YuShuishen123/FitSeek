@@ -14,6 +14,12 @@
 	<name>Fitseek</name>
 	<description>FitseekProject</description>
 	<url/>
+	<packaging>pom</packaging>
+	<modules>
+		<module>Fitseek-common</module>
+		<module>Fitseek-system</module>
+		<module>Fitseek-service</module>
+	</modules>
 	<licenses>
 		<license/>
 	</licenses>
@@ -29,6 +35,16 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<!--统一Mybatis-plus版本-->
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus</artifactId>
+				<version>3.5.11</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
