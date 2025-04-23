@@ -30,6 +30,15 @@ public class ExercisePlan {
     @TableField("end_date")
     private LocalDate endDate;
 
+    @TableField("exercise_intensity")
+    private String exerciseIntensity;
+
+    @TableField("medical_history")
+    private String medicalHistory;
+
+    @TableField("plan_description")
+    private String planDescription;
+
     @TableField("plan_image")
     private String planImage;
 

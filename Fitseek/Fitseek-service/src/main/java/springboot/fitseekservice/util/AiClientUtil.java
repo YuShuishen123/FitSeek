@@ -1,6 +1,5 @@
 package springboot.fitseekservice.util;
 
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import feign.Feign;
@@ -32,18 +31,20 @@ public class AiClientUtil {
     }
 
     /**
-     * 调用 AI 并逐字打印回复
+     * 调用 AI 并逐字打印回复，同时保存完整回复
      * @param prompt 用户输入的提示语
+     * @return 返回 AI 的完整回复
      */
-    public static void callAi(String prompt) {
+    public static String callAi(String prompt) {
+        StringBuilder response = new StringBuilder();
         try {
             // 构造请求体
             JsonObject requestBody = buildRequestBody(prompt);
 
             // 调用 API 并处理流式响应
-            try (Response response = aiService.streamResponse(requestBody.toString(), API_KEY)) {
+            try (Response resp = aiService.streamResponse(requestBody.toString(), API_KEY)) {
                 try (BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(response.body().asInputStream(), StandardCharsets.UTF_8))) {
+                        new InputStreamReader(resp.body().asInputStream(), StandardCharsets.UTF_8))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
                         if (line.startsWith("data:")) {
@@ -57,6 +58,7 @@ public class AiClientUtil {
                                         JsonObject delta = choice.getAsJsonObject("delta");
                                         if (delta.has("content")) {
                                             String content = delta.get("content").getAsString();
+                                            response.append(content);
                                             printTypingEffect(content);
                                         }
                                     }
@@ -69,8 +71,10 @@ public class AiClientUtil {
                 }
             }
             System.out.println(); // 最后换行
+            return response.toString();
         } catch (Exception e) {
             System.out.println("\nAI 调用失败: " + e.getMessage());
+            return response.toString(); // 即使失败也返回已收集的内容
         }
     }
 
