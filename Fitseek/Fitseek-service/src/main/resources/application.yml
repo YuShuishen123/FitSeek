@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: Fitseek-plan
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ry-vue
+    username: root
+    password: mzyudada
+server:
+  port: 8080

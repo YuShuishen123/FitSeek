@@ -6,6 +6,7 @@ import org.apache.ibatis.type.JdbcType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author Yu'S'hui'shen
@@ -25,8 +26,9 @@ public class BodyInfo {
 
     private BigDecimal weight;
 
+    // 用户运动爱好，JSON数组格式，如["篮球","游泳"]
     @TableField("sport_hobbies")
-    private String sportHobbies;
+    private List<String> sportHobbies;
 
     @TableField("exercise_frequency")
     private String exerciseFrequency = "未知";

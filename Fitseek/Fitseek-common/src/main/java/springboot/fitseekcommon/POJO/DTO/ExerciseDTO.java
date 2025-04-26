@@ -5,8 +5,9 @@ import lombok.Data;
 import java.time.LocalDate;
 
 /**
- * YuShuishen
- * 该实体用于规定前端调用计划生成接口实所需要提升的json参数格式
+ * @author Yu'S'hui'shen
+ * @date 2025/4/26
+ * @description 该实体用于规定前端调用计划生成接口实所需要提升的json参数格式
  */
 @Data
 public class ExerciseDTO {

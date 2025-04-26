@@ -4,6 +4,12 @@ import springboot.fitseekcommon.POJO.DTO.ExerciseDTO;
 import springboot.fitseekservice.mapper.ExercisePlanMapper;
 import springboot.fitseekservice.service.ExercisePlanService;
 
+
+/**
+ * @author Yu'S'hui'shen
+ * @date 2025/4/26
+ * @description 实现计划创建服务接口,包含增删改查等
+ */
 public class ExercisePlanServiceImpl implements ExercisePlanService {
 
     ExercisePlanMapper exercisePlanMapper;
@@ -14,6 +20,8 @@ public class ExercisePlanServiceImpl implements ExercisePlanService {
 
     @Override
     public String createPlan(ExerciseDTO exerciseDTO,String imageUrl) {
+
+        return "ok";
 
         // 第一步:根据用户id获取该用户的body_info
 

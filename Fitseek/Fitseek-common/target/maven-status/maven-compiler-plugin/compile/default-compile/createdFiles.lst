@@ -1,0 +1,11 @@
+springboot\fitseekcommon\POJO\DO\UserBody.class
+springboot\fitseekcommon\POJO\DO\Article.class
+springboot\fitseekcommon\POJO\DO\UserPhysicalTest.class
+springboot\fitseekcommon\POJO\DO\User.class
+springboot\fitseekcommon\POJO\DO\ArticleContent.class
+springboot\fitseekcommon\POJO\DO\UserExercisePlan.class
+springboot\fitseekcommon\POJO\DO\DailyExerciseSchedule.class
+springboot\fitseekcommon\POJO\DO\ExercisePlan.class
+springboot\fitseekcommon\POJO\DO\BodyInfo.class
+springboot\fitseekcommon\POJO\DO\PhysicalTest.class
+springboot\fitseekcommon\POJO\DO\ArticleContentRelation.class

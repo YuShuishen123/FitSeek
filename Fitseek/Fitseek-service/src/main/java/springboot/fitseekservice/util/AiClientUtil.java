@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * AI 客户端工具类，用于封装流式 AI 调用
+ * @Descraption AI 客户端工具类，用于封装流式 AI 调用
  * @author Yu'S'hui'shen
  */
 public class AiClientUtil {

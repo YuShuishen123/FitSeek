@@ -1,8 +1,8 @@
 package springboot.fitseekservice.service;
 
 /**
- * @author: YuShuishen
- * 创建计划服务接口
+ * @author Yu'S'hui'shen
+ * @description 调用大模型生成计划详细内容接口
  */
 public interface CreatePlanService {
     /**
