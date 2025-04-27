@@ -1,5 +1,7 @@
 package springboot.fitseekservice.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import springboot.fitseekcommon.Exception.CustomException;
 import springboot.fitseekcommon.Exception.Response;
@@ -15,6 +17,8 @@ import springboot.fitseekservice.service.BodyInfoService;
  */
 @Service
 public class BodyInfoServiceImpl implements BodyInfoService {
+
+    Logger logger = LoggerFactory.getLogger(BodyInfoServiceImpl.class);
 
     private final BodyInfoMapper bodyInfoMapper;
 
@@ -32,13 +36,18 @@ public class BodyInfoServiceImpl implements BodyInfoService {
     @Override
     public Response<String> updateBodyInfo(BodyInfoDTO bodyInfoDTO) {
         BodyInfo bodyInfo = convertToBodyInfo(bodyInfoDTO);
-        bodyInfoMapper.insert(bodyInfo);
+        bodyInfoMapper.updateById(bodyInfo);
         return Response.success("更新成功");
     }
 
     @Override
     public Response<BodyInfoDTO> selectBodyInfo(Long userId) throws CustomException {
-        BodyInfo bodyInfo = bodyInfoMapper.selectById(userId);
+        Long bodyId = bodyInfoMapper.getBodyIdByUserId(userId);
+        if (bodyId == null) {
+            // 处理查询失败的情况
+            throw new CustomException("身体素质基本信息为空",400);
+        }
+        BodyInfo bodyInfo = bodyInfoMapper.selectById(bodyId);
         if(bodyInfo == null) {
             // 处理查询失败的情况
             throw new CustomException("查询失败",500);
@@ -48,11 +57,15 @@ public class BodyInfoServiceImpl implements BodyInfoService {
 
     private BodyInfoDTO convertToBodyInfoDTO(BodyInfo bodyInfo) {
         BodyInfoDTO bodyInfoDTO = new BodyInfoDTO();
+        bodyInfoDTO.setBodyId(bodyInfo.getBodyId());
         bodyInfoDTO.setGender(bodyInfo.getGender());
         bodyInfoDTO.setAge(bodyInfo.getAge());
         bodyInfoDTO.setHeight(bodyInfo.getHeight());
         bodyInfoDTO.setWeight(bodyInfo.getWeight());
-        bodyInfoDTO.setSportHobbies(bodyInfo.getSportHobbies());
+        bodyInfoDTO.setHobby1(bodyInfo.getHobby1());
+        bodyInfoDTO.setHobby2(bodyInfo.getHobby2());
+        bodyInfoDTO.setHobby3(bodyInfo.getHobby3());
+        bodyInfoDTO.setHobby4(bodyInfo.getHobby4());
         bodyInfoDTO.setExerciseFrequency(bodyInfo.getExerciseFrequency());
         bodyInfoDTO.setExerciseDuration(bodyInfo.getExerciseDuration());
         return bodyInfoDTO;
@@ -60,11 +73,15 @@ public class BodyInfoServiceImpl implements BodyInfoService {
 
     private BodyInfo convertToBodyInfo(BodyInfoDTO bodyInfoDTO) {
         BodyInfo bodyInfo = new BodyInfo();
+        bodyInfo.setBodyId(bodyInfoDTO.getBodyId());
         bodyInfo.setGender(bodyInfoDTO.getGender());
         bodyInfo.setAge(bodyInfoDTO.getAge());
         bodyInfo.setHeight(bodyInfoDTO.getHeight());
         bodyInfo.setWeight(bodyInfoDTO.getWeight());
-        bodyInfo.setSportHobbies(bodyInfoDTO.getSportHobbies());
+        bodyInfo.setHobby1(bodyInfoDTO.getHobby1());
+        bodyInfo.setHobby2(bodyInfoDTO.getHobby2());
+        bodyInfo.setHobby3(bodyInfoDTO.getHobby3());
+        bodyInfo.setHobby4(bodyInfoDTO.getHobby4());
         bodyInfo.setExerciseFrequency(bodyInfoDTO.getExerciseFrequency());
         bodyInfo.setExerciseDuration(bodyInfoDTO.getExerciseDuration());
         return bodyInfo;

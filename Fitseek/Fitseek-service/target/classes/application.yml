@@ -6,5 +6,13 @@ spring:
     url: jdbc:mysql://localhost:3306/ry-vue
     username: root
     password: mzyudada
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
 server:
   port: 8080
+logging:
+  level:
+    com.baomidou.mybatisplus: debug

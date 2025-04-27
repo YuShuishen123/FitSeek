@@ -3,7 +3,7 @@ package springboot.fitseekservice;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import springboot.fitseekservice.service.CreatePlanService;
+import springboot.fitseekservice.service.AICreatePlanService;
 
 /**
  * @author Yu'S'hui'shen
@@ -13,11 +13,11 @@ public class getPlanTest {
 
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(FitseekPlanApplication.class);
 
-    CreatePlanService createPlanService = context.getBean(CreatePlanService.class);
+    AICreatePlanService AICreatePlanService = context.getBean(AICreatePlanService.class);
 
     @Test
     public void testPlan() {
-        String response = createPlanService.createPlan("{\n" +
+        String response = AICreatePlanService.createPlan("{\n" +
                 "  \"user_physical_data\": {\n" +
                 "    \"body_info\": {\n" +
                 "      \"gender\": \"F\",\n" +

@@ -4,7 +4,7 @@ package springboot.fitseekservice.service;
  * @author Yu'S'hui'shen
  * @description 调用大模型生成计划详细内容接口
  */
-public interface CreatePlanService {
+public interface AICreatePlanService {
     /**
      * 创建计划
      * @param prompt  提示语
